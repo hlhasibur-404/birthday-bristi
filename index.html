@@ -2,140 +2,171 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Bristi Didi 🎉</title>
+<title>Happy Birthday Bristi</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Hacking Font -->
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Share Tech Mono', monospace;
+}
+
 body{
   height:100vh;
-  background: linear-gradient(135deg,#ff4d6d,#845ec2);
+  background:black;
+  color:#00ff99;
   display:flex;
-  align-items:center;
   justify-content:center;
-  font-family: 'Segoe UI', sans-serif;
+  align-items:center;
   overflow:hidden;
-  color:white;
 }
 
-/* Card */
-.card{
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(12px);
-  padding:30px;
-  border-radius:25px;
+.matrix{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:black;
+  z-index:-1;
+}
+
+.container{
   text-align:center;
-  box-shadow:0 30px 60px rgba(0,0,0,.3);
-  animation: zoom 1.2s ease;
-  z-index:10;
-}
-
-@keyframes zoom{
-  from{transform:scale(0);opacity:0}
-  to{transform:scale(1);opacity:1}
+  animation: fadeIn 2s ease-in-out;
 }
 
 h1{
-  font-size:2.6em;
-  animation: glow 2s infinite alternate;
+  font-size:2.5rem;
+  text-shadow:0 0 10px #00ff99;
 }
 
-@keyframes glow{
-  from{text-shadow:0 0 10px #fff}
-  to{text-shadow:0 0 25px #ffd6ff}
-}
-
-.cake{
-  font-size:80px;
+.name{
+  font-size:4rem;
+  color:#00ff00;
   margin:15px 0;
-  animation: bounce 2s infinite;
+  animation: glitch 1.5s infinite;
 }
 
-@keyframes bounce{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-15px)}
+p{
+  font-size:1.1rem;
+  opacity:0.9;
 }
 
 button{
-  margin-top:20px;
-  padding:14px 30px;
-  border:none;
-  border-radius:40px;
-  font-size:16px;
+  margin-top:25px;
+  padding:10px 25px;
+  border:1px solid #00ff99;
+  background:transparent;
+  color:#00ff99;
   cursor:pointer;
-  background:white;
-  color:#ff4d6d;
-  transition:.3s;
+  font-size:1rem;
 }
 
 button:hover{
-  transform:scale(1.1);
+  background:#00ff99;
+  color:black;
 }
 
-/* Balloons */
-.balloon{
-  position:absolute;
-  bottom:-100px;
-  font-size:40px;
-  animation: float 6s linear infinite;
+footer{
+  position:fixed;
+  bottom:15px;
+  width:100%;
+  text-align:center;
+  font-size:0.9rem;
+  opacity:0.7;
 }
 
-@keyframes float{
-  to{transform:translateY(-120vh)}
+/* Animations */
+@keyframes glitch{
+  0%{ text-shadow:2px 2px #00ff99; }
+  50%{ text-shadow:-2px -2px #00ffaa; }
+  100%{ text-shadow:2px 2px #00ff99; }
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:scale(0.8);}
+  to{opacity:1; transform:scale(1);}
 }
 
 /* Confetti */
 .confetti{
-  position:fixed;
-  width:10px;
-  height:10px;
-  top:-10px;
-  animation: fall 3s linear infinite;
+  position:absolute;
+  width:8px;
+  height:8px;
+  background:#00ff99;
+  animation: fall 4s linear infinite;
 }
 
 @keyframes fall{
-  to{transform:translateY(110vh) rotate(360deg)}
+  from{transform:translateY(-50px);}
+  to{transform:translateY(100vh);}
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
-  <h1> HAPPY BIRTHDAY, BRISTI DIDI.🎉</h1>
-  <div class="cake">🎂</div>
-  <p>
-    -ঈশ্বর তোমার ইচ্ছে পূরণ করুন, <br> আনন্দ আর সুখ তোমার জীবনের প্রতিটি অধ্যায়ে থাকুক!🙂🐸
-  </p>
-  <button onclick="party()">Celebrate 🎆</button>
+<canvas class="matrix" id="matrix"></canvas>
+
+<div class="container">
+  <h1>HAPPY BIRTHDAY 🎂</h1>
+  <div class="name">BRISTI</div>
+  <p>May God fulfill your wishes, and may joy and happiness be present in every chapter of your life.</p>
+  <button onclick="celebrate()">RUN CELEBRATION</button>
 </div>
 
-<script>
-// Balloons
-const balloons = ["🎈","🎉","🎊"];
-setInterval(()=>{
-  let b=document.createElement("div");
-  b.className="balloon";
-  b.innerHTML=balloons[Math.floor(Math.random()*balloons.length)];
-  b.style.left=Math.random()*100+"vw";
-  b.style.animationDuration=(Math.random()*3+4)+"s";
-  document.body.appendChild(b);
-  setTimeout(()=>b.remove(),7000);
-},600);
+<footer>
+  ⚡ Power by Mafia 🗿☠️
+</footer>
 
+<script>
 // Confetti
-function party(){
-  for(let i=0;i<120;i++){
+function celebrate(){
+  for(let i=0;i<60;i++){
     let c=document.createElement("div");
     c.className="confetti";
-    c.style.left=Math.random()*100+"vw";
-    c.style.backgroundColor=
-      "hsl("+Math.random()*360+",100%,50%)";
-    c.style.animationDuration=(Math.random()*2+2)+"s";
     document.body.appendChild(c);
+    c.style.left=Math.random()*window.innerWidth+"px";
+    c.style.animationDuration=(Math.random()*3+2)+"s";
     setTimeout(()=>c.remove(),4000);
   }
 }
+
+// Matrix Background
+const canvas=document.getElementById("matrix");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+const letters="08BRISTIPAUL";
+const fontSize=16;
+const columns=canvas.width/fontSize;
+const drops=[];
+
+for(let i=0;i<columns;i++) drops[i]=1;
+
+function draw(){
+  ctx.fillStyle="rgba(0,0,0,0.05)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="#00ff99";
+  ctx.font=fontSize+"px monospace";
+
+  for(let i=0;i<drops.length;i++){
+    const text=letters.charAt(Math.floor(Math.random()*letters.length));
+    ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+    if(drops[i]*fontSize>canvas.height && Math.random()>0.975){
+      drops[i]=0;
+    }
+    drops[i]++;
+  }
+}
+setInterval(draw,33);
 </script>
 
 </body>
